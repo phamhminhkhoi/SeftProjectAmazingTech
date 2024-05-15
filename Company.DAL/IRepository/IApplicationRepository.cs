@@ -11,8 +11,8 @@ namespace Company.DAL.IRepository
     {
         Task<List<Application>> GetAllApplicationsAsync();
         Task<Application> GetApplicationByIdAsync(int id);
-        Task AddApplicationAsync(Application application);
-        Task UpdateApplicationAsync(Application application);
+        Task<Application> AddApplicationAsync(Application application);
+        Task<Application> UpdateApplicationAsync(Application application);
         Task DeleteApplicationAsync(int id);
     }
 }

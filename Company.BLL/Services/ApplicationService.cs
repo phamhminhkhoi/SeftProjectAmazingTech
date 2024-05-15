@@ -37,7 +37,7 @@ namespace Company.BLL.Services
             return _mapper.Map<ApplicationDTO>(application);
         }
 
-        public async Task AddApplicationAsync(string userId, ApplicationDTO applicationDTO)
+        public async Task<ApplicationDTO> AddApplicationAsync(string userId, ApplicationDTO applicationDTO)
         {
             if (!string.IsNullOrEmpty(applicationDTO.ApplicationImageUrl))
             {
@@ -47,9 +47,10 @@ namespace Company.BLL.Services
             var application = _mapper.Map<Application>(applicationDTO);
             application.UserId = userId;
             await _applicationRepository.AddApplicationAsync(application);
+            return _mapper.Map<ApplicationDTO>(application);
         }
 
-        public async Task UpdateApplicationAsync(string userId, ApplicationDTO applicationDTO)
+        public async Task<ApplicationDTO> UpdateApplicationAsync(string userId, ApplicationDTO applicationDTO)
         {
             if (!string.IsNullOrEmpty(applicationDTO.ApplicationImageUrl))
             {
@@ -59,6 +60,7 @@ namespace Company.BLL.Services
             var application = _mapper.Map<Application>(applicationDTO);
             application.UserId = userId;
             await _applicationRepository.UpdateApplicationAsync(application);
+            return _mapper.Map<ApplicationDTO>(application);
         }
 
         public async Task DeleteApplicationAsync(int id)

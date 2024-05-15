@@ -23,17 +23,18 @@ public class ApplicationRepository : IApplicationRepository
         return await _dbContext.Applications.FirstOrDefaultAsync(a => a.ApplicationId == id);
     }
 
-    public async Task AddApplicationAsync(Application application)
+    public async Task<Application> AddApplicationAsync(Application application)
     {
-
         await _dbContext.Applications.AddAsync(application);
         await _dbContext.SaveChangesAsync();
+        return application;
     }
 
-    public async Task UpdateApplicationAsync(Application application)
+    public async Task<Application> UpdateApplicationAsync(Application application)
     {
         _dbContext.Entry(application).State = EntityState.Modified;
         await _dbContext.SaveChangesAsync();
+        return application;
     }
 
     public async Task DeleteApplicationAsync(int id)
